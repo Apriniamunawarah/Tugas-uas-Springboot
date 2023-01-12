@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Daftar Materi</title>
+  </head>
+  <body ng-app="materiapp">
+    <h1>Daftar Materi</h1>
+
+    <div ng-controller="MateriController">
+      Input Materi <input type="text" ng-model="namaMateri"/>
+      <button ng-click="tambahMateri()">Tambahkan</button>
+      <br/>
+      Materi {{namaMateri}} berhasil diinput.
+      <ul>
+        <li ng-repeat="materi in daftarMateri">
+          {{materi}}
+          <button ng-click="hapusMateri(materi)">Hapus</button>
+        </li>
+      </ul>
+    </div>
+
+    <div ng-controller="GenerateMateriController">
+      <table border="1">
+        <thead>
+          <tr>
+            <td>Kode</td>
+            <td>Nama</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat= "materi in daftarMateri.content">
+            <td>{{materi.kode}}</td>
+            <td>{{materi.nama}}</td>
+            <td><button ng-click="hapusMateri(materi)">hapus</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table border="1">
+        <tr>
+          <td>Kode</td>
+          <td><input type="text" ng-model="materi.kode" required="true"/></td>
+        </tr>
+        <tr>
+          <td>Nama</td>
+          <td><input type="text" ng-model="materi.nama" required="true"/></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><button ng-click="simpanMateri()">Simpan</button></td>
+        </tr>
+      </table>
+    </div>
+    <script th:src="@{/js/angular.min.js}"></script>
+    <script th:src="@{/js/materi.js}"></script>
+  </body>
+</html>
